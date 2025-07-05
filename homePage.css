@@ -1,0 +1,125 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+}
+:root {
+  --primary-color: #648620;
+  --hover-color: #74982b;
+  --text-color: white;
+  --shadow-color: yellowgreen;
+  --font-main: 'Poppins', sans-serif;
+}
+body{
+  margin:5px;
+  padding:0;
+  font-family:var(--font-main);
+  background-color:#5e7c1bce;
+}
+.quiz-logo{
+  max-width:600px;
+  margin-block:80px;
+}
+.quiz-container{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+}
+
+/*  magical button CSS */
+.start-button{
+    text-decoration: none;
+    font-size: 1.4rem;
+    font-weight:700;
+    color:var(--text-color);
+    background-color: var(--primary-color);
+    padding: 1rem 2.5rem;
+    border: none;
+    box-shadow: 0 5px 10px 5px var(--shadow-color);
+    transform: skewX(-20deg);
+    cursor: pointer;
+    transition: 0.2s;
+    margin-bottom: 2rem;
+}
+.start-button:focus{
+    outline:none;
+}
+.start-button:hover {
+  background-color: rgb(116, 152, 43);
+  transform: skewX(-20deg) scale(1.03);
+  box-shadow: 1px 1px 10px 0 #FFD600;
+}
+.start-button .second{
+    transition: 0.5s;
+    margin-right: 0px;
+}
+.start-button:hover .second{
+    margin-right:4vw;
+}
+.span{
+    transform:skew(15deg);
+}
+.second{
+    width:20px;
+    /* margin-left:30px; */
+    position:relative;
+    top:12%;
+}
+.one{
+    transition: 0.5s;
+    transform: translateX(-60%);
+}
+.two{
+    transition: 0.5s;
+    transform: translateX(-30%);
+}
+.start-button:hover .three{
+    animation: color_anim 1s infinite 0.2s;
+}
+.start-button:hover .one{
+    transform: translateX(0%);
+    animation: color_anim 1s infinite 0.6s;
+}
+.start-button:hover .two{
+    transform: translate(0%);
+    animation: color_anim 1s infinite 0.4s;
+}
+.home-page-score{
+  padding:1.25rem;
+}
+@keyframes color_anim {
+  0% {
+    fill: white;
+  }
+
+  50% {
+    fill: #fbc638;
+  }
+
+  100% {
+    fill: white;
+  }
+}
+footer{
+  color:#46620eeb;
+  margin-top: 50px;
+  padding:0.8rem;
+
+}
+@media(max-width:768px){
+  .quiz-logo{
+    max-width:80%;
+    margin-block:120px;
+  }
+  footer{
+    margin-top:80px;
+  } 
+}
+@media (max-width: 480px) {
+  .start-button {
+    font-size: 18px;
+    padding: 12px 30px;
+  }
+}

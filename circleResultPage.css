@@ -1,0 +1,258 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    margin:5px;
+    padding:0;
+    font-weight: 600;
+    font-family:'Poppins',sans-serif;
+}
+.main-container{
+    max-width: 1200px;
+    margin: 0 auto;
+    display:flex;
+    flex-direction: column;
+    margin-bottom: 3rem;
+}
+.header-class{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.quiz-logo{
+    width:10rem;
+}
+.paragraph{
+    font-size: 2rem;
+    font-weight: 700;
+    padding:5px;
+}
+        /* CSS for main element */
+
+.main-class{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding:10px;
+}
+.progress-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position:relative;
+}
+.circle-progress{
+    position:relative;
+    width:220px;
+    height:220px;
+}
+.progress-ring{
+    transform: rotate(90deg);
+}
+.progress-bar-red, 
+.progress-value-green{
+    fill:transparent;
+    stroke-width:30;
+}
+.progress-bar-red{
+    stroke:#ff7a7a;
+}
+.progress-value-green{
+    stroke: #35bd3a;
+    stroke-dasharray: 314;
+    stroke-dashoffset: 314;
+    transition: stroke-dashoffset 1s ease-in-out;
+}
+
+.progress-container::before{
+    content:'';
+    border:3px solid;
+    border-color: #009006 transparent transparent #009006;
+    height:3rem;
+    width:3rem;
+    position:absolute;
+    left:-4%;
+    top:67%;
+    z-index:1;
+}
+
+.progress-container::after{
+    content:'';
+    border:3px solid;
+    border-color:#eb4545 #eb4545 transparent transparent;
+    height:3rem;
+    width:3rem;
+    position:absolute;
+    right:-3%;
+    top:31%; 
+}
+.progress-red-circle{
+    position:absolute;
+    border-radius: 50%;
+    height:10px;
+    width:10px;
+    background-color: #eb4545;
+    top:30%;
+    right:22%;
+    z-index:1;
+}
+.progress-green-circle{
+    position:absolute;
+    border-radius: 50%;
+    height:10px;
+    width:10px;
+    background-color: #009006;
+    bottom:30%;
+    left:21%;
+    z-index: 10;
+}
+.completed-score{
+    position:absolute;
+    bottom:-1%;
+    left:-10%;
+    font-size:16px;
+}
+.uncompleted-score{
+    position:absolute;
+    bottom:35%;
+    right:-14%;
+    font-size:16px;
+}
+
+.answer-outOf-question{
+    position:absolute;
+    top:45%;
+    left:40%;
+    transform: translate(-50%, -50%);
+    font-size: 1rem;
+}
+.user-message{
+  padding:10px;
+  margin-block:10px;
+  color:#000000;
+  font-size:16px;
+}
+/* return home page button CSS */
+.retry-button-div{
+  margin-block:1rem;
+}
+.retry-button{
+    display:flex;
+    padding:1rem 2rem;
+    text-decoration: none;
+    font-size:20px;
+    color:white;
+    background-color: rgb(100, 134, 32);
+    color: white;
+    border: none;
+    box-shadow: 0 5px 10px 5px yellowgreen;
+    transform: skewX(-15deg);
+    cursor: pointer;
+    transition: 0.2s;
+}
+.retry-button:focus{
+    outline:none;
+}
+.retry-button:hover {
+  background-color: rgb(116, 152, 43);
+  transform: skewX(-20deg);
+  box-shadow: 1vw 1vw 10px 0 #FFD600;
+}
+.retry-button .second{
+    transition: 0.5s;
+    margin-left: 10px;
+}
+.span{
+    transform:skew(15deg)
+}
+.second{
+    width:20px;
+    margin-right:30px;
+    position:relative;
+    top:12%;
+}
+.one{
+    transition: 0.5s;
+    transform: translateX(60%);
+}
+.two{
+    transition: 0.5s;
+    transform: translateX(30%);
+}
+.retry-button:hover .three{
+    animation: color_anim 1s infinite 0.2s;
+}
+.retry-button:hover .one{
+    transform: translateX(0%);
+    animation: color_anim 1s infinite 0.6s;
+}
+.retry-button:hover .two{
+    transform: translate(0%);
+    animation: color_anim 1s infinite 0.2s;
+}
+@keyframes color_anim {
+  0% {
+    fill: white;
+  }
+
+  50% {
+    fill: #fbc638;
+  }
+
+  100% {
+    fill: white;
+  }
+}
+/* All social links CSS  */
+.share-score p{
+  padding:0.7rem;
+  font-size:1rem;
+  color:#535353;
+}
+.all-links{
+  display:flex;
+  justify-content: space-around;
+  padding-inline:1rem;
+}
+.all-links a img{
+  vertical-align: middle;
+}
+.social-link{
+    width:50px;
+    margin-inline:5px;
+    border-radius: 5px;
+}
+.social-link:hover {
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 5px #aaa);
+  transition: all 0.3s ease;
+}
+/* footer CSS */
+.footer-class {
+  text-align: center;
+  color: rgb(35, 74, 4);
+  font-size: 1rem;
+  padding:0.7rem;
+  margin-top:0.4rem;
+}
+
+
+@media (max-width: 440px) {
+  .paragraph {
+    font-size: 1.2rem;
+  }
+  .retry-button {
+    font-size: 1rem;
+    padding: 0.75rem 1.5rem;
+  }
+  .social-link {
+    width: 35px;
+  }
+  .user-message{
+    font-size:0.78rem;
+    }
+}
