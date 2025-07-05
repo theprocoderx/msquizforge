@@ -37,7 +37,7 @@ quiz-app/
 
 ## 🚀 Live Demo
 
-🌐 [Live Website](https://your-netlify-link.netlify.app)
+🌐 [Live Website](https://quizappcircleresult.netlify.app)
 
 > Replace the link above with your actual Netlify deployment link.
 
