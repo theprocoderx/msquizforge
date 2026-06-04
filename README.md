@@ -16,19 +16,19 @@ A fully responsive, interactive quiz web application with sound effects, a count
 
 ### 🏠 Home Page
 
-![Home Page](images/home-page-screenshot.png)
+![Home Page](images/QuizForgeHome.png)
 
 ### ❓ Quiz Page
 
-![Quiz Page](images/quiz-page-screenshot.png)
+![Quiz Page](images/QuizForgeQuest.png)
 
 ### ⏰ Timeout Page
 
-![Timeout Page](images/quiz-timeup-screenshot.png)
+![Timeout Page](images/QuizForgeTimeup.png)
 
 ### 🧾 Result Page
 
-![Result Page](images/results-page-screenshot.png)
+![Result Page](images/QuizForgeResult.png)
 
 ---
 
