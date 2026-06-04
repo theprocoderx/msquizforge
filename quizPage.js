@@ -9,15 +9,15 @@ const timer = document.querySelector('.timer');
 const nextButton = document.querySelector('.next-button');
 const questionProgress = document.querySelector('.question-progress');
 const timeUp = document.querySelector('.time-up');
-const correctSound = document.querySelector('.correct-sound')
-const wrongSound = document.querySelector('.wrong-sound')
-const audioIcon = document.getElementById("audioIcon");
-const audioToggle = document.getElementById("audioToggle");
-const retryButton = document.getElementById("retry-button");
+const correctSound = document.querySelector('.correct-sound');
+const wrongSound = document.querySelector('.wrong-sound');
+const audioIcon = document.getElementById('audioIcon');
+const audioToggle = document.getElementById('audioToggle');
+const retryButton = document.getElementById('retry-button');
 
 let countdown = 31;
-let questionNumber =0;
-let userResult =0;
+let questionNumber = 0;
+let userResult = 0;
 let countClearId;
 
 const questionSet = [
@@ -235,148 +235,146 @@ const questionSet = [
       'option-b',
     ],
   ],
-]
+];
 
-  questionTab.textContent = questionSet[0][0]
-  optionAText.textContent = questionSet[0][1][0]
-  optionBText.textContent = questionSet[0][1][1]
-  optionCText.textContent = questionSet[0][1][2]
-  optionDText.textContent = questionSet[0][1][3]
+questionTab.textContent = questionSet[0][0];
+optionAText.textContent = questionSet[0][1][0];
+optionBText.textContent = questionSet[0][1][1];
+optionCText.textContent = questionSet[0][1][2];
+optionDText.textContent = questionSet[0][1][3];
 
-  audioToggle.addEventListener("click", () => {
-      if (audioIcon.classList.contains("fa-volume-up")) {
-        audioIcon.classList.remove("fa-volume-up");
-        audioIcon.classList.add("fa-volume-mute");
-      } else {
-        audioIcon.classList.remove("fa-volume-mute");
-        audioIcon.classList.add("fa-volume-up");
-      }
-  });
-  startCountdownTimer()
-  retryButton.addEventListener('click', ()=>{
-      window.location.href = 'homePage.html';
-  })
-nextButton.addEventListener('click', (e)=>{
-    resetColors()
-    timeUp.classList.remove('time-up-show');
-    if(optionTab.style.pointerEvents === 'none'){
-        questionNumber++;
-        if(questionNumber <= 8){
-            questionProgress.textContent =`0${questionNumber + 1}/25`
-        }else{
-            questionProgress.textContent =`${questionNumber + 1}/25`
+audioToggle.addEventListener('click', () => {
+  if (audioIcon.classList.contains('fa-volume-up')) {
+    audioIcon.classList.remove('fa-volume-up');
+    audioIcon.classList.add('fa-volume-mute');
+  } else {
+    audioIcon.classList.remove('fa-volume-mute');
+    audioIcon.classList.add('fa-volume-up');
+  }
+});
+startCountdownTimer();
+retryButton.addEventListener('click', () => {
+  window.location.href = 'index.html';
+});
+nextButton.addEventListener('click', (e) => {
+  resetColors();
+  timeUp.classList.remove('time-up-show');
+  if (optionTab.style.pointerEvents === 'none') {
+    questionNumber++;
+    if (questionNumber <= 8) {
+      questionProgress.textContent = `0${questionNumber + 1}/25`;
+    } else {
+      questionProgress.textContent = `${questionNumber + 1}/25`;
+    }
+    countdown = 31;
+    questionTab.textContent = questionSet[questionNumber][0];
+    optionAText.textContent = questionSet[questionNumber][1][0];
+    optionBText.textContent = questionSet[questionNumber][1][1];
+    optionCText.textContent = questionSet[questionNumber][1][2];
+    optionDText.textContent = questionSet[questionNumber][1][3];
+
+    startCountdownTimer();
+    optionTab.style.pointerEvents = 'auto';
+    options.forEach((resetOption) => {
+      const resultImg = resetOption.querySelector('.results .images');
+      const resultText = resetOption.querySelector('.results h6');
+      if (resultImg) resultImg.style.display = 'none';
+      if (resultText) resultText.style.display = 'none';
+    });
+  }
+});
+
+options.forEach((optionElement) => {
+  optionElement.addEventListener('click', (e) => {
+    if (countdown > 0) {
+      optionTab.style.pointerEvents = 'none';
+      clearInterval(countClearId);
+
+      const correctClass = questionSet[questionNumber][1][4];
+
+      if (optionElement.classList.contains(correctClass)) {
+        const resultImg = optionElement.querySelector('.results .images');
+        if (resultImg) {
+          resultImg.style.display = 'block';
+          resultImg.src = 'images/correct.svg';
         }
-        countdown = 31;
-        questionTab.textContent = questionSet[questionNumber][0];
-        optionAText.textContent = questionSet[questionNumber][1][0];
-        optionBText.textContent = questionSet[questionNumber][1][1];
-        optionCText.textContent = questionSet[questionNumber][1][2];
-        optionDText.textContent = questionSet[questionNumber][1][3];
+        userResult++;
+        localStorage.setItem('userResult', userResult);
+        if (audioIcon.classList.contains('fa-volume-up')) correctSound.play();
+      } else {
+        if (audioIcon.classList.contains('fa-volume-up')) wrongSound.play();
+        const resultsDiv = optionElement.querySelector('.results');
+        const resultImg = resultsDiv.querySelector('.images');
+        const resultText = resultsDiv.querySelector('h6');
+        if (resultImg) {
+          resultImg.style.display = 'block';
+          resultImg.src = 'images/wrong.svg';
+        }
+        if (resultText) resultText.style.display = 'block';
+        //show correct Answer
+        options.forEach((correctAnswer) => {
+          if (correctAnswer.classList.contains(correctClass)) {
+            const correctImg = correctAnswer.querySelector('.results .images');
+            if (correctImg) {
+              correctImg.style.display = 'block';
+              correctImg.src = 'images/correct.svg';
+            }
+          }
+        });
+      }
+      if (questionNumber === 24) {
+        nextButton.textContent = 'Show Result';
 
-         startCountdownTimer()       
-        optionTab.style.pointerEvents = 'auto';
-        options.forEach((resetOption) =>{
-            const resultImg = resetOption.querySelector('.results .images');
-            const resultText = resetOption.querySelector('.results h6')
-            if(resultImg) resultImg.style.display = 'none'
-            if(resultText) resultText.style.display = 'none'
-        })
-     }
-    
-})
-  
+        if (!nextButton.classList.contains('result-bound')) {
+          nextButton.classList.add('result-bound');
+          nextButton.onclick = () => {
+            window.location.href = 'circleResultPage.html';
+          };
+        }
+      }
+    }
+  });
+});
 
-        options.forEach((optionElement) =>{
-            optionElement.addEventListener('click', (e)=>{
-                  if(countdown > 0){
-                    optionTab.style.pointerEvents = 'none';
-                    clearInterval(countClearId);
-
-                    const correctClass = questionSet[questionNumber][1][4];
-
-                    if(optionElement.classList.contains(correctClass)){
-                        const resultImg = optionElement.querySelector('.results .images')
-                        if(resultImg){
-                            resultImg.style.display = 'block';
-                            resultImg.src = 'images/correct.svg'
-                        }
-                        userResult++;
-                        localStorage.setItem('userResult', userResult)
-                        if(audioIcon.classList.contains("fa-volume-up")) correctSound.play()
-                    }else{
-
-                        if(audioIcon.classList.contains("fa-volume-up")) wrongSound.play()
-                            const resultsDiv = optionElement.querySelector('.results')
-                            const resultImg = resultsDiv.querySelector('.images')
-                            const resultText = resultsDiv.querySelector('h6')
-                            if(resultImg){
-                                resultImg.style.display = 'block';
-                                resultImg.src = 'images/wrong.svg'
-                            }
-                            if(resultText) resultText.style.display ='block'
-                            //show correct Answer
-                            options.forEach((correctAnswer)=>{
-                                if(correctAnswer.classList.contains(correctClass)){
-                                  const correctImg = correctAnswer.querySelector('.results .images');
-                                  if(correctImg){
-                                    correctImg.style.display ='block';
-                                    correctImg.src = 'images/correct.svg'
-                                  }
-                                }
-                            })
-                        }
-                        if (questionNumber === 24) {
-                          nextButton.textContent = 'Show Result';
-
-                          if (!nextButton.classList.contains('result-bound')) {
-                            nextButton.classList.add('result-bound');
-                            nextButton.onclick = () => {
-                              window.location.href = 'circleResultPage.html';
-                            };
-                          }
-                        }
-                  }
-            })
-        })
-   
 function resetColors() {
-    document.body.style.backgroundColor = '';
-    timer.style.backgroundColor = '';
-    timer.style.boxShadow = '';
-    nextButton.style.backgroundColor = '';
-    nextButton.style.boxShadow = '';
+  document.body.style.backgroundColor = '';
+  timer.style.backgroundColor = '';
+  timer.style.boxShadow = '';
+  nextButton.style.backgroundColor = '';
+  nextButton.style.boxShadow = '';
 }
 function startCountdownTimer() {
-    countClearId = setInterval(() => {
-        countdown--;
-        timer.textContent = countdown <= 9 ? `00:0${countdown}s` : `00:${countdown}s`;
+  countClearId = setInterval(() => {
+    countdown--;
+    timer.textContent =
+      countdown <= 9 ? `00:0${countdown}s` : `00:${countdown}s`;
 
-        if (countdown === 0) {
-            clearInterval(countClearId);
-            timeUp.classList.add('time-up-show');
-            optionTab.style.pointerEvents = 'none';
-        }
+    if (countdown === 0) {
+      clearInterval(countClearId);
+      timeUp.classList.add('time-up-show');
+      optionTab.style.pointerEvents = 'none';
+    }
 
-        if (countdown <= 30) {
-            document.body.style.backgroundColor = '#6eb050';
-            timer.style.backgroundColor = '#02a40a78';
-            timer.style.boxShadow = '1px 4px #1b781f6e';
-            nextButton.style.backgroundColor = '#02a40a78';
-            nextButton.style.boxShadow = '1px 4px #1b781f6e';
-        }
-        if (countdown <= 15) {
-            document.body.style.backgroundColor = ' #71741b';
-            timer.style.backgroundColor = '#c5b1006e';
-            timer.style.boxShadow = '1px 4px #6b6e22';
-            nextButton.style.backgroundColor = '#c5b1006e';
-            nextButton.style.boxShadow = '1px 4px #6b6e22';
-        }
-        if (countdown <= 5) {
-            document.body.style.backgroundColor = '#a63b33';
-            timer.style.backgroundColor = '#c5392f';
-            timer.style.boxShadow = '1px 4px #a6322a';
-            nextButton.style.backgroundColor = '#c5392f';
-            nextButton.style.boxShadow = '1px 4px #a63b33';
-        }
-    }, 1000);
+    if (countdown <= 30) {
+      document.body.style.backgroundColor = '#6eb050';
+      timer.style.backgroundColor = '#02a40a78';
+      timer.style.boxShadow = '1px 4px #1b781f6e';
+      nextButton.style.backgroundColor = '#02a40a78';
+      nextButton.style.boxShadow = '1px 4px #1b781f6e';
+    }
+    if (countdown <= 15) {
+      document.body.style.backgroundColor = ' #71741b';
+      timer.style.backgroundColor = '#c5b1006e';
+      timer.style.boxShadow = '1px 4px #6b6e22';
+      nextButton.style.backgroundColor = '#c5b1006e';
+      nextButton.style.boxShadow = '1px 4px #6b6e22';
+    }
+    if (countdown <= 5) {
+      document.body.style.backgroundColor = '#a63b33';
+      timer.style.backgroundColor = '#c5392f';
+      timer.style.boxShadow = '1px 4px #a6322a';
+      nextButton.style.backgroundColor = '#c5392f';
+      nextButton.style.boxShadow = '1px 4px #a63b33';
+    }
+  }, 1000);
 }

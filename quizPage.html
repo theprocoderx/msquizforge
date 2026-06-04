@@ -1,130 +1,133 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
-        href="https://fonts.googleapis.com/css?family=Poppins:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic"
-        rel="stylesheet"
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
-    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
-  <title>Interactive Quiz</title>
-  <link rel="stylesheet" href="quizPage.css">
-  <script src="quizPage.js" defer></script>
-</head>
-<body>
-
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic"
+      rel="stylesheet"
+    />
+    <link rel="shortcut icon" href="images/favicon.webp" type="image/x-icon" />
+    <title>Interactive Quiz</title>
+    <link rel="stylesheet" href="quizPage.css" />
+    <script src="quizPage.js" defer></script>
+  </head>
+  <body>
     <div class="main-container">
-        <audio class="correct-sound" preload="auto">
-            <source src="audiofile/right-music.mp3" type="audio/mpeg" />
-        </audio>
-        <audio class="wrong-sound" preload="auto">
-            <source src="audiofile/wrong-music.mp3" type="audio/mpeg" />
-        </audio>
-        <header>
-            <img class="header-logo" src="images/quiz 2.webp" alt="quiz symbol"/>
-            <div class="sound-container">
-                    <!-- Speaker ON icon by default -->
-                    <button id="audioToggle" aria-label="Toggle sound">
-                        <i id="audioIcon" class="fas fa-volume-up"></i>
-                    </button>
+      <audio class="correct-sound" preload="auto">
+        <source src="audiofile/right-music.mp3" type="audio/mpeg" />
+      </audio>
+      <audio class="wrong-sound" preload="auto">
+        <source src="audiofile/wrong-music.mp3" type="audio/mpeg" />
+      </audio>
+      <header>
+        <img
+          class="header-logo"
+          src="images/QuizForgeLinear.webp"
+          alt="quiz symbol"
+        />
+        <div class="sound-container">
+          <!-- Speaker ON icon by default -->
+          <button id="audioToggle" aria-label="Toggle sound">
+            <i id="audioIcon" class="fas fa-volume-up"></i>
+          </button>
+        </div>
+      </header>
+
+      <main class="quiz-container">
+        <section class="question-progress">01/25</section>
+
+        <section class="question-tab"></section>
+
+        <section class="timer">00:30s</section>
+        <section class="option-tab">
+          <div class="options option-a">
+            <h6></h6>
+            <div class="results result-a">
+              <h6>You Chose</h6>
+              <img class="images" src="" alt="Result icon" />
             </div>
-        </header>
-
-        <main class="quiz-container">
-            <section class="question-progress">01/25</section>
-        
-            <section class="question-tab">
-                
-            </section>
-
-            <section class="timer">
-                    00:30s
-            </section>
-            <section class="option-tab">
-                    <div class="options option-a"><h6></h6>
-                        <div class="results result-a">
-                            <h6>You Chose</h6>
-                            <img class="images" src="" alt="Result icon" />
-                        </div>
-                    </div>
-                    <div class="options option-b"><h6></h6>
-                        <div class="results result-b">
-                            <h6>You Chose</h6>
-                            <img class="images" src="" alt="Result icon" />
-                        </div>
-                    </div>
-                    <div class="options option-c"><h6></h6>
-                        <div class="results result-c">
-                            <h6>You Chose</h6>
-                            <img class="images" src="" alt="Result icon" />
-                        </div>
-                    </div>
-                    <div class="options option-d"><h6></h6>
-                        <div class="results result-d">
-                            <h6>You Chose</h6>
-                            <img class="images" src="" alt="Result icon" />
-                        </div>
-                    </div>
-            </section>
-            <section class="time-up">
-                    <h1>Time Up</h1>
-                    <img src="images/alarm.png" alt="alarm clock"/>
-                    <div  class="retry-button-div">
-                        <button
-                            class="start-button"
-                            id="retry-button"
-                            type="button" 
-                            aria-label="Retry Quiz"
-                            
-                            >
-                            <span class="second">
-                                <svg
-                                    aria-hidden="true"
-                                    width="40px"
-                                    height="20px"
-                                    viewBox="0 0 66 43"
-                                    version="1.1"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    xmlns:xlink="http://www.w3.org/1999/xlink"
-                                >
-                                    <g
-                                    id="arrow"
-                                    stroke="none"
-                                    stroke-width="1"
-                                    fill="none"
-                                    fill-rule="evenodd"
-                                    >
-                                    <path
-                                        class="one"
-                                        d="M25.8456067,3.89485454 L22.0236851,0.139296592 C21.8291689,-0.0518420739 21.5173671,-0.0518571125 21.3228325,0.139262789 L0.308386596,20.7848311 C-0.0855801382,21.1718824 -0.0911863447,21.8050225 0.295865014,22.1989893 C0.299981242,22.2031791 0.304134349,22.2073326 0.308323839,22.2114492 L21.322902,42.8607841 C21.5174043,43.0519059 21.8291758,43.0519358 22.0237147,42.8608513 L25.8454814,39.1069479 C26.0424848,38.9134427 26.0453207,38.5968729 25.8518155,38.3998695 C25.8497107,38.3977268 25.8475868,38.395603 25.8454438,38.3934985 L9.00622108,21.8567812 C8.80919717,21.6632968 8.80632801,21.3467273 8.99981239,21.1497035 C9.0019353,21.1475418 9.00407774,21.1453995 9.00623955,21.1432767 L25.8454792,4.60825197 C26.0425131,4.41477773 26.0453987,4.09820839 25.8519244,3.90117456 C25.8498374,3.89904911 25.8477314,3.89694235 25.8456067,3.89485454 Z"
-                                        fill="#FFFFFF"
-                                    ></path>
-                                    <path
-                                        class="two"
-                                        d="M45.8456067,3.89485454 L42.0236851,0.139296592 C41.8291689,-0.0518420739 41.5173671,-0.0518571125 41.3228325,0.139262789 L20.3083866,20.7848311 C19.9144199,21.1718824 19.9088137,21.8050225 20.295865,22.1989893 C20.2999812,22.2031791 20.3041343,22.2073326 20.3083238,22.2114492 L41.322902,42.8607841 C41.5174043,43.0519059 41.8291758,43.0519358 42.0237147,42.8608513 L45.8454814,39.1069479 C46.0424848,38.9134427 46.0453207,38.5968729 45.8518155,38.3998695 C45.8497107,38.3977268 45.8475868,38.395603 45.8454438,38.3934985 L29.0062211,21.8567812 C28.8091972,21.6632968 28.806328,21.3467273 28.9998124,21.1497035 C29.0019353,21.1475418 29.0040777,21.1453995 29.0062396,21.1432767 L45.8454792,4.60825197 C46.0425131,4.41477773 46.0453987,4.09820839 45.8519244,3.90117456 C45.8498374,3.89904911 45.8477314,3.89694235 45.8456067,3.89485454 Z"
-                                        fill="#FFFFFF"
-                                    ></path>
-                                    <path
-                                        class="three"
-                                        d="M65.8456067,3.89485454 L62.0236851,0.139296592 C61.8291689,-0.0518420739 61.5173671,-0.0518571125 61.3228325,0.139262789 L40.3083866,20.7848311 C39.9144199,21.1718824 39.9088137,21.8050225 40.295865,22.1989893 C40.2999812,22.2031791 40.3041343,22.2073326 40.3083238,22.2114492 L61.322902,42.8607841 C61.5174043,43.0519059 61.8291758,43.0519358 62.0237147,42.8608513 L65.8454814,39.1069479 C66.0424848,38.9134427 66.0453207,38.5968729 65.8518155,38.3998695 C65.8497107,38.3977268 65.8475868,38.395603 65.8454438,38.3934985 L49.0062211,21.8567812 C48.8091972,21.6632968 48.806328,21.3467273 48.9998124,21.1497035 C49.0019353,21.1475418 49.0040777,21.1453995 49.0062396,21.1432767 L65.8454792,4.60825197 C66.0425131,4.41477773 66.0453987,4.09820839 65.8519244,3.90117456 C65.8498374,3.89904911 65.8477314,3.89694235 65.8456067,3.89485454 Z"
-                                        fill="#FFFFFF"
-                                    ></path>
-                                    </g>
-                                </svg>
-                            </span>
-                            <span class="span">RETRY</span>
-                        </button>
-                    </div>
-            </section>
-        </main>
-        <button class="next-button">Next <span> > </span></button>
-        <footer>
-            <h5 class="footer">Made with ❤️ by Magan Singh</h5>
-        </footer>
-
+          </div>
+          <div class="options option-b">
+            <h6></h6>
+            <div class="results result-b">
+              <h6>You Chose</h6>
+              <img class="images" src="" alt="Result icon" />
+            </div>
+          </div>
+          <div class="options option-c">
+            <h6></h6>
+            <div class="results result-c">
+              <h6>You Chose</h6>
+              <img class="images" src="" alt="Result icon" />
+            </div>
+          </div>
+          <div class="options option-d">
+            <h6></h6>
+            <div class="results result-d">
+              <h6>You Chose</h6>
+              <img class="images" src="" alt="Result icon" />
+            </div>
+          </div>
+        </section>
+        <section class="time-up">
+          <h1>Time Up</h1>
+          <img src="images/alarm.png" alt="alarm clock" />
+          <div class="retry-button-div">
+            <button
+              class="start-button"
+              id="retry-button"
+              type="button"
+              aria-label="Retry Quiz"
+            >
+              <span class="second">
+                <svg
+                  aria-hidden="true"
+                  width="40px"
+                  height="20px"
+                  viewBox="0 0 66 43"
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
+                  <g
+                    id="arrow"
+                    stroke="none"
+                    stroke-width="1"
+                    fill="none"
+                    fill-rule="evenodd"
+                  >
+                    <path
+                      class="one"
+                      d="M25.8456067,3.89485454 L22.0236851,0.139296592 C21.8291689,-0.0518420739 21.5173671,-0.0518571125 21.3228325,0.139262789 L0.308386596,20.7848311 C-0.0855801382,21.1718824 -0.0911863447,21.8050225 0.295865014,22.1989893 C0.299981242,22.2031791 0.304134349,22.2073326 0.308323839,22.2114492 L21.322902,42.8607841 C21.5174043,43.0519059 21.8291758,43.0519358 22.0237147,42.8608513 L25.8454814,39.1069479 C26.0424848,38.9134427 26.0453207,38.5968729 25.8518155,38.3998695 C25.8497107,38.3977268 25.8475868,38.395603 25.8454438,38.3934985 L9.00622108,21.8567812 C8.80919717,21.6632968 8.80632801,21.3467273 8.99981239,21.1497035 C9.0019353,21.1475418 9.00407774,21.1453995 9.00623955,21.1432767 L25.8454792,4.60825197 C26.0425131,4.41477773 26.0453987,4.09820839 25.8519244,3.90117456 C25.8498374,3.89904911 25.8477314,3.89694235 25.8456067,3.89485454 Z"
+                      fill="#FFFFFF"
+                    ></path>
+                    <path
+                      class="two"
+                      d="M45.8456067,3.89485454 L42.0236851,0.139296592 C41.8291689,-0.0518420739 41.5173671,-0.0518571125 41.3228325,0.139262789 L20.3083866,20.7848311 C19.9144199,21.1718824 19.9088137,21.8050225 20.295865,22.1989893 C20.2999812,22.2031791 20.3041343,22.2073326 20.3083238,22.2114492 L41.322902,42.8607841 C41.5174043,43.0519059 41.8291758,43.0519358 42.0237147,42.8608513 L45.8454814,39.1069479 C46.0424848,38.9134427 46.0453207,38.5968729 45.8518155,38.3998695 C45.8497107,38.3977268 45.8475868,38.395603 45.8454438,38.3934985 L29.0062211,21.8567812 C28.8091972,21.6632968 28.806328,21.3467273 28.9998124,21.1497035 C29.0019353,21.1475418 29.0040777,21.1453995 29.0062396,21.1432767 L45.8454792,4.60825197 C46.0425131,4.41477773 46.0453987,4.09820839 45.8519244,3.90117456 C45.8498374,3.89904911 45.8477314,3.89694235 45.8456067,3.89485454 Z"
+                      fill="#FFFFFF"
+                    ></path>
+                    <path
+                      class="three"
+                      d="M65.8456067,3.89485454 L62.0236851,0.139296592 C61.8291689,-0.0518420739 61.5173671,-0.0518571125 61.3228325,0.139262789 L40.3083866,20.7848311 C39.9144199,21.1718824 39.9088137,21.8050225 40.295865,22.1989893 C40.2999812,22.2031791 40.3041343,22.2073326 40.3083238,22.2114492 L61.322902,42.8607841 C61.5174043,43.0519059 61.8291758,43.0519358 62.0237147,42.8608513 L65.8454814,39.1069479 C66.0424848,38.9134427 66.0453207,38.5968729 65.8518155,38.3998695 C65.8497107,38.3977268 65.8475868,38.395603 65.8454438,38.3934985 L49.0062211,21.8567812 C48.8091972,21.6632968 48.806328,21.3467273 48.9998124,21.1497035 C49.0019353,21.1475418 49.0040777,21.1453995 49.0062396,21.1432767 L65.8454792,4.60825197 C66.0425131,4.41477773 66.0453987,4.09820839 65.8519244,3.90117456 C65.8498374,3.89904911 65.8477314,3.89694235 65.8456067,3.89485454 Z"
+                      fill="#FFFFFF"
+                    ></path>
+                  </g>
+                </svg>
+              </span>
+              <span class="span">RETRY</span>
+            </button>
+          </div>
+        </section>
+      </main>
+      <button class="next-button">Next <span> > </span></button>
+      <footer>
+        <h5 class="footer">Made with ❤️ by Magan Singh</h5>
+      </footer>
     </div>
-
-</body>
+  </body>
 </html>
