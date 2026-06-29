@@ -4,11 +4,12 @@ A fully responsive, interactive quiz web application with sound effects, a count
 
 ## 🔗 Important Links
 
-🌐 Live Site: https://quizappcircleresult.netlify.app/
-💻 GitHub Profile: https://github.com/maganstackforge
-📂 Project Repository: https://github.com/maganstackforge/quiz-app
-👤 LinkedIn: https://linkedin.com/in/maganstackforge
-📧 Email: magan.stackforge@gmail.com
+- 🌐 Live Website: https://msquizforge.vercel.app/
+- 💻 Repository: https://github.com/theprocoderx/msquizforge
+- 👨‍💻 Portfolio: https://procoderx.com
+- 🐙 GitHub: https://github.com/theprocoderx
+- 💼 LinkedIn: https://linkedin.com/in/procoderx
+- 📧 Email: procoderxs@gmail.com
 
 ---
 
